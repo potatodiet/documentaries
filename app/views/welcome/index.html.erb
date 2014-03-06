@@ -1,0 +1,32 @@
+<div>
+  <h2>Best:</h2>
+  <hr>
+  <div class="row">
+    <% @best_documentaries.each do |documentary| %>
+      <div class="col-md-3" id="<%= documentary.id %>">
+        <a href="/view/<%= documentary.title.downcase.gsub(' ','-') %>">
+          <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
+          <h3><%= documentary.title %></h3>
+        </a>
+        <span><%= documentary.likes %> likes, and</span>
+        <span><%= documentary.dislikes %> dislikes</span>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div>
+  <h2>Random:</h2>
+  <hr>
+  <div class="row">
+    <% @random_documentaries.each do |documentary| %>
+      <div class="col-md-3" id="<%= documentary.id %>">
+        <a href="/view/<%= documentary.title.downcase.gsub(' ','-') %>">
+          <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
+          <h3><%= documentary.title %></h3>
+        </a>
+        <span><%= documentary.likes %> likes, and</span>
+        <span><%= documentary.dislikes %> dislikes</span>
+      </div>
+    <% end %>
+  </div>
+</div>
