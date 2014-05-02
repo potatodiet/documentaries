@@ -13,12 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20140428165811) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "documentaries", force: true do |t|
     t.string  "title"
     t.text    "description"
     t.string  "video_source"
-    t.float   "user_rating"
-    t.string  "video_service"
     t.integer "uploader_user"
     t.integer "likes"
     t.integer "dislikes"
@@ -30,8 +31,8 @@ ActiveRecord::Schema.define(version: 20140428165811) do
   create_table "reviews", force: true do |t|
     t.text    "message"
     t.boolean "is_positive"
-    t.integer "documentary_id"
     t.integer "user_id"
+    t.integer "documentary_id"
   end
 
   create_table "users", force: true do |t|
