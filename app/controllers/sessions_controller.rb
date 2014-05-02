@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
   def new
     if session[:user_id]
-      flash.now.alert = 'You are already logged in'
-      render :new
+      redirect_to root_url, :notice => 'You are already logged in'
     end
   end
 

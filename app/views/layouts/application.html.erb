@@ -28,9 +28,6 @@
       <a class="navbar-brand" href="/">Documentaries</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/categories">Categories</a></li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
         <%= form_tag('/search', :method => 'get', role: 'search',
             class: 'navbar-form navbar-left') do %>
@@ -42,6 +39,7 @@
         <% end %>
         <% if current_user %>
           <li><a href="/user/upload">Upload</a></li>
+          <li><a href="/user/view/<%= session[:user_id] %>">Profile</a></li>
           <li><a href="/user/sign_out">Sign Out</a></li>
         <% else %>
           <li><a href="/user/sign_up">Sign Up</a></li>

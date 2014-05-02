@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   validates_presence_of :username
-  validates_uniqueness_of :username, :on => :create
+  validates_uniqueness_of :username
   validates_presence_of :email_address
-  validates_uniqueness_of :email_address, :on => :create
+  validates_uniqueness_of :email_address
   validates_presence_of :password, :on => :create
 
   def self.authenticate(email_address, password)

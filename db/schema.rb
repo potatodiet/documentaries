@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301221214) do
+ActiveRecord::Schema.define(version: 20140428165811) do
 
   create_table "documentaries", force: true do |t|
     t.string  "title"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140301221214) do
     t.integer "dislikes"
     t.string  "thumbnail_url"
     t.integer "total_rating"
+    t.string  "category"
   end
 
   create_table "reviews", force: true do |t|

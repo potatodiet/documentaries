@@ -5,6 +5,8 @@ Documentaries::Application.routes.draw do
   patch 'review' => 'reviews#update', as: 'review_update'
 
   get 'user/view/:id' => 'users#show'
+  get 'user/edit' => 'users#edit', as: 'user_edit'
+  patch 'user/edit' => 'users#update'
 
   get 'user/sign_up' => 'users#new', as: 'sign_up'
   post 'user/sign_up' => 'users#create'
@@ -15,6 +17,9 @@ Documentaries::Application.routes.draw do
   get 'view/:title' => 'documentaries#show'
   get 'user/upload' => 'documentaries#new', as: 'upload'
   post 'user/upload' => 'documentaries#create'
+
+  get 'documentary/edit/:id' => 'documentaries#edit', as: 'documentary_edit'
+  patch 'documentary/edit/:id' => 'documentaries#update'
 
   resources 'search', only: ['index']
 end

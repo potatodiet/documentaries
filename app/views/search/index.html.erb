@@ -1,27 +1,23 @@
 <div>
   <h2>Documentaries:</h2>
   <hr>
-  <div class="row">
-    <% @documentaries.each do |documentary| %>
-      <div class="col-md-3" id="<%= documentary.id %>">
-        <a href="/view/<%= documentary.title.downcase.gsub(' ','-') %>">
-          <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
-          <h3><%= documentary.title %></h3>
-        </a>
-        <span><%= documentary.likes %> likes, and</span>
-        <span><%= documentary.dislikes %> dislikes</span>
-      </div>
-    <% end %>
-  </div>
+  <% @documentaries.each_slice(4) do |grouped_documentaries| %>
+    <div class="row">
+      <% grouped_documentaries.each do |documentary| %>
+        <div class="col-md-3" id="<%= documentary.id %>">
+          <a href="/view/<%= documentary.title.downcase.gsub(' ','-') %>">
+            <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
+            <h3><%= documentary.title %></h3>
+          </a>
+          <span><%= documentary.likes %> likes, and</span>
+          <span><%= documentary.dislikes %> dislikes</span>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <br>
+  <% end %>
 </div>
 <div>
-  <h2>Users:</h2>
-  <hr>
-  <div class="row">
-    <% @users.each do |user| %>
-      <div class="col-md-3" id="<%= user.id %>">
-        <a href="/user/view/<%= user.id %>"><%= user.username %></a>
-      </div>
-    <% end %>
-  </div>
-</div>
+
+<%= will_paginate(@documentaries, renderer: BootstrapPagination::Rails) %>

@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     end
 
     review = Review.new(params.require(:review).permit(:message, :is_positive,
-        :is_positive, :documentary_id))
+        :documentary_id))
     review.user_id = session[:user_id]
     review.save
 
