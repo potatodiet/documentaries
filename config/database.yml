@@ -9,7 +9,7 @@ development:
   pool: 5
   database: dev-db
   username: postgres
-  password: database-login
+  password: db-password
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,7 +20,7 @@ test:
   pool: 5
   database: test-db
   username: postgres
-  password: database-login
+  password: db-password
 
 production:
   adapter: postgresql
