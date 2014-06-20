@@ -5,12 +5,11 @@ default: &default
 
 development:
   <<: *default
-  adapter: postgresql
+  database: dev_db
 
 test:
   <<: *default
-  adapter: postgresql
+  database: test_db
 
 production:
   <<: *default
-  adapter: postgresql
