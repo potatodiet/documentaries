@@ -38,7 +38,7 @@
           </div>
         <% end %>
         <% if current_user %>
-          <li><a href="/user/upload">Upload</a></li>
+          <li><%= link_to('Upload', new_documentary_path) %></li>
           <li><a href="/user/view/<%= session[:user_id] %>">Profile</a></li>
           <li><a href="/user/sign_out">Sign Out</a></li>
         <% else %>

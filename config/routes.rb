@@ -14,12 +14,6 @@ Documentaries::Application.routes.draw do
   post 'user/sign_in' => 'sessions#create'
   get 'user/sign_out' => 'sessions#destroy', as: 'sign_out'
 
-  get 'view/:title' => 'documentaries#show'
-  get 'user/upload' => 'documentaries#new', as: 'upload'
-  post 'user/upload' => 'documentaries#create'
-
-  get 'documentary/edit/:id' => 'documentaries#edit', as: 'documentary_edit'
-  patch 'documentary/edit/:id' => 'documentaries#update'
-
   resources 'search', only: ['index']
+  resources 'documentaries', :only => ['new', 'create', 'show', 'edit']
 end

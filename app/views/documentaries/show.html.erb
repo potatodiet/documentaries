@@ -13,7 +13,7 @@
   <p>Category: <%= link_to(@documentary.category, '/search?utf8=✓&commit=Search&' \
       "search=\"category:#{@documentary.category}\"") %></p>
   <% if @documentary.uploader_user == session[:user_id] %>
-    <a href="<%= documentary_edit_url(@documentary)%>"
+    <a href="<%= edit_documentary_path(@documentary)%>"
         class="btn btn-default">Edit Documentary</a>
   <% end %>
 </div>

@@ -1,7 +1,6 @@
 class DocumentariesController < ApplicationController
   def show
-    @documentary = Documentary.where('lower(title) = ?',
-        params[:title].gsub('-',' ')).first
+    @documentary = Documentary.find(params[:id])
     @documentary_user = User.find(@documentary.uploader_user).username
     @review = Review.where({user_id: session[:user_id],
     documentary_id: @documentary.id}).first || Review.new
