@@ -18,11 +18,6 @@ class DocumentariesController < ApplicationController
 
     @documentary = Documentary.new(documentary_params)
     @documentary.uploader_user = session[:user_id]
-    @documentary.likes = 0
-    @documentary.dislikes = 0
-    @documentary.total_rating = 0;
-    @documentary.thumbnail_url = "https://img.youtube.com/vi/" \
-        "#{params[:documentary][:video_source]}/mqdefault.jpg"
 
     if @documentary.save
       redirect_to root_url :notice => 'Documentary created!'

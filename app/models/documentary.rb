@@ -11,6 +11,7 @@ class Documentary < ActiveRecord::Base
   validates_uniqueness_of(:video_source)
 
   after_initialize(:create_arrays)
+  before_save(:defaults)
 
   # will_paginate setting
   self.per_page = 8
@@ -18,5 +19,13 @@ class Documentary < ActiveRecord::Base
   def create_arrays
     @select_list = ['youtube']
     @category_list = ['Other', 'Rome', 'World War 2', 'World War 1']
+  end
+
+  def defaults
+    self.likes ||= 0
+    self.dislikes ||= 0
+    self.total_rating ||= 0;
+    self.thumbnail_url ||= "https://img.youtube.com/vi/" \
+        "#{video_source}/mqdefault.jpg"
   end
 end
