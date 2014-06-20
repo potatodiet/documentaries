@@ -9,17 +9,12 @@ class DocumentariesController < ApplicationController
 
   def new
     @documentary = Documentary.new
-    @select_list = ['youtube']
-    @category_list = ['Other', 'Rome', 'World War 2', 'World War 1']
   end
 
   def create
     if !current_user
       redirect_to root_url
     end
-
-    @select_list = ['youtube']
-    @category_list = ['Other', 'Rome', 'World War 2', 'World War 1']
 
     @documentary = Documentary.new(documentary_params)
     @documentary.uploader_user = session[:user_id]
@@ -39,9 +34,6 @@ class DocumentariesController < ApplicationController
 
   def edit
     @documentary = Documentary.find(params[:id])
-
-    @select_list = ['youtube']
-    @category_list = ['Other', 'Rome', 'World War 2', 'World War 1']
   end
 
   def update

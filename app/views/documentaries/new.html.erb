@@ -27,7 +27,7 @@
   <div class="form-group">
     <%= f.label :video_service, class: 'control-label col-sm-2' %>
     <div class="col-sm-5">
-    <%= f.select :video_service, @select_list, {}, { class: 'form-control' } %>
+    <%= f.select :video_service, @documentary.select_list, {}, { class: 'form-control' } %>
     </div>
   </div>
   <div class="form-group">
@@ -40,7 +40,7 @@
   <div class="form-group">
     <%= f.label :category, class: 'control-label col-sm-2' %>
     <div class="col-sm-5">
-    <%= f.select :category, @category_list, {}, { class: 'form-control' } %>
+    <%= f.select :category, @documentary.category_list, {}, { class: 'form-control' } %>
     </div>
   </div>
   <div class="form-group">
