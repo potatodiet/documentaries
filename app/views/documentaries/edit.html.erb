@@ -1,4 +1,4 @@
-<%= form_for(@documentary, url: documentary_edit_url, method: :patch, :html => { :role => 'form',
+<%= form_for(@documentary, method: :patch, :html => { :role => 'form',
     :class => 'form-horizontal' }) do |f| %>
   <% if @documentary.errors.any? %>
     <div class="error_messages">

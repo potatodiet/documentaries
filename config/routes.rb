@@ -15,5 +15,5 @@ Documentaries::Application.routes.draw do
   get 'user/sign_out' => 'sessions#destroy', as: 'sign_out'
 
   resources 'search', only: ['index']
-  resources 'documentaries', :only => ['new', 'create', 'show', 'edit']
+  resources 'documentaries', :only => ['new', 'create', 'show', 'edit', 'update']
 end

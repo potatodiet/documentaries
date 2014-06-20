@@ -48,9 +48,9 @@ class DocumentariesController < ApplicationController
     @documentary = Documentary.find(params[:id])
 
     if @documentary.update(documentary_params)
-      redirect_to root_url
+      redirect_to(documentary_path(@documentary))
     else
-      render 'edit'
+      render('edit')
     end
   end
 end
