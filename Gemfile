@@ -20,6 +20,8 @@ gem 'will_paginate-foundation'
 
 gem 'acts-as-taggable-on'
 
+gem 'cancancan', '~> 1.8'
+
 group :production do
   gem 'rails_12factor'
   gem 'newrelic_rpm'

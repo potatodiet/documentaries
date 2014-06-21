@@ -1,9 +1,7 @@
 class ReviewsController < ApplicationController
-  def create
-    if !current_user
-      return false
-    end
+  load_and_authorize_resource
 
+  def create
     review = Review.new(params.require(:review).permit(:message, :is_positive,
         :documentary_id))
     review.user_id = session[:user_id]
@@ -23,10 +21,6 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if !current_user
-      return false
-    end
-
     review = Review.where('user_id' => session[:user_id],
         'documentary_id' => params[:review][:documentary_id]).first
 

@@ -1,9 +1,7 @@
 class SessionsController < ApplicationController
+  load_and_authorize_resource
+  
   def new
-    if session[:user_id]
-      redirect_to root_url, :notice => 'You are already logged in'
-    end
-
     @user = User.new
   end
 

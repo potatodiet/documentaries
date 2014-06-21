@@ -13,9 +13,7 @@
 
   <p>Tags: <%= raw @documentary.tag_list.map { |tag| link_to(tag, search_index_path(search: tag)) }.join(', ') %></p>
 
-  <% if @documentary.uploader_user == session[:user_id] %>
-    <%= link_to('Edit Documentary', edit_documentary_path(@documentary), class: 'small button') %>
-  <% end %>
+  <%= link_to('Edit Documentary', edit_documentary_path(@documentary), class: 'small button') if can?(:edit, @documentary) %>
 </div>
 
 <% if !@review.message %>

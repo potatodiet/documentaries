@@ -1,4 +1,6 @@
 class DocumentariesController < ApplicationController
+  load_and_authorize_resource
+  
   def show
     @documentary = Documentary.find(params[:id])
     @documentary_user = User.find(@documentary.uploader_user).username
