@@ -13,8 +13,10 @@ gem 'turbolinks'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-gem 'will_paginate', '~> 3.0'
-gem 'will_paginate-bootstrap'
+gem 'foundation-rails'
+gem 'foundation_rails_helper'
+gem 'will_paginate'
+gem 'will_paginate-foundation'
 
 group :production do
   gem 'rails_12factor'

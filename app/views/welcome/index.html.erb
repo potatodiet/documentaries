@@ -3,7 +3,7 @@
   <hr>
   <div class="row">
     <% @best_documentaries.each do |documentary| %>
-      <div class="col-md-3" id="<%= documentary.id %>">
+      <div class="small-6 medium-3 columns end" id="<%= documentary.id %>">
         <%= link_to(documentary_path(documentary)) do %>
           <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
           <h3><%= documentary.title %></h3>
@@ -19,7 +19,7 @@
   <hr>
   <div class="row">
     <% @random_documentaries.each do |documentary| %>
-      <div class="col-md-3" id="<%= documentary.id %>">
+      <div class="small-6 medium-3 columns end" id="<%= documentary.id %>">
         <%= link_to(documentary_path(documentary)) do %>
           <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
           <h3><%= documentary.title %></h3>

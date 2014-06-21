@@ -13,35 +13,17 @@
   <p>Category: <%= link_to(@documentary.category, '/search?utf8=✓&commit=Search&' \
       "search=\"category:#{@documentary.category}\"") %></p>
   <% if @documentary.uploader_user == session[:user_id] %>
-    <a href="<%= edit_documentary_path(@documentary)%>"
-        class="btn btn-default">Edit Documentary</a>
+    <%= link_to('Edit Documentary', edit_documentary_path(@documentary), class: 'small button') %>
   <% end %>
 </div>
 
-<% if current_user && !@review.message %>
-  <%= form_for(@review, url: reviews_path, html: { :role => 'form',
-      :class => 'form-horizontal' }) do |f| %>
-    <% if @review.errors.any? %>
-      <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @review.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-      </div>
-    <% end %>
-    <div class="form-group">
-      <input type="hidden" name="review[documentary_id]"
-          value="<%= @documentary.id %>" />
-    </div>
-    <div class="form-group">
-      <%= f.label :message, 'Review', class: 'control-label col-sm-2' %>
-      <div class="col-sm-5">
-        <%= f.text_area :message, class: 'form-control',
-            placeholder: 'Test Message' %>
-      </div>
-    </div>
+<% if !@review.message %>
+  <%= form_for(@review, url: reviews_path) do |f| %>
+    <input type="hidden" name="review[documentary_id]" value="<%= @documentary.id %>" />
+    <%= f.hidden_field('documentary_id', value: @documentary.id) %>
+
+    <%= f.text_area(:message, label: 'Review', placeholder: 'Test Message') %>
+
     <div class="form-group">
     <div class="radio col-sm-offset-2">
       <label>
@@ -55,36 +37,15 @@
         Disliked
       </label>
     </div>
-    <div class="form-group" style="padding-top:10px;">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Submit</button>
-      </div>
-    </div>
+    
+    <%= f.submit('Submit Review') %>
   <% end %>
 <% elsif current_user %>
-  <%= form_for(@review, url: review_update_path, method: :patch,
-      html: { :role => 'form', :class => 'form-horizontal' }) do |f| %>
-    <% if @review.errors.any? %>
-      <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @review.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-      </div>
-    <% end %>
-    <div class="form-group">
-      <input type="hidden" name="review[documentary_id]"
-          value="<%= @documentary.id %>" />
-    </div>
-    <div class="form-group">
-      <%= f.label :message, 'Review', class: 'control-label col-sm-2' %>
-      <div class="col-sm-5">
-        <%= f.text_area :message, class: 'form-control',
-            placeholder: 'Test Message', value: @review.message %>
-      </div>
-    </div>
+  <%= form_for(@review, url: review_update_path, method: :patch) do |f| %>
+    <%= f.hidden_field('documentary_id', value: @documentary.id) %>
+
+    <%= f.text_area :message, label: 'Review', placeholder: 'Test Message', value: @review.message %>
+
     <div class="form-group">
     <div class="radio col-sm-offset-2">
       <label>
@@ -98,11 +59,8 @@
         Disliked
       </label>
     </div>
-    <div class="form-group" style="padding-top:10px;">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Update</button>
-      </div>
-    </div>
+
+    <%= f.submit('Update Review') %>
   <% end %>
 <% end %>
 

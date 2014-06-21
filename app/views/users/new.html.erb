@@ -1,39 +1,17 @@
-<%= form_for(@user, :url => sign_up_path, html: { :role => 'form',
-    :class => 'form-horizontal' }) do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-    <h2>Form is invalid</h2>
-    <ul>
-      <% for message in @user.errors.full_messages %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-    </div>
-  <% end %>
-  <div class="form-group">
-    <%= f.label :username, class: 'control-label col-sm-2' %>
-    <div class="col-sm-4">
-      <%= f.text_field :username, class: 'form-control',
-          placeholder: 'Username' %>
-    </div>
+<%= form_for(@user, :url => sign_up_path) do |f| %>
+  <div class="large-6 medium-6 columns">
+    <%= f.text_field(:username, placeholder: 'Username') %>
   </div>
-  <div class="form-group">
-    <%= f.label :email_address, class: 'control-label col-sm-2' %>
-    <div class="col-sm-4">
-      <%= f.email_field :email_address, class: 'form-control',
-          placeholder: 'Email Address' %>
-    </div>
+
+  <div class="large-6 medium-6 columns">
+    <%= f.email_field(:email_address, placeholder: 'Email Address') %>
   </div>
-  <div class="form-group">
-    <%= f.label :password, class: 'control-label col-sm-2' %>
-    <div class="col-sm-4">
-      <%= f.password_field :password, class: 'form-control',
-          placeholder: 'Password' %>
-    </div>
+
+  <div class="large-6 medium-6 columns">
+    <%= f.password_field(:password, placeholder: 'Password') %>
   </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign up</button>
-    </div>
+
+  <div class="large-12 columns end">
+    <%= f.submit('Sign Up!') %>
   </div>
 <% end %>

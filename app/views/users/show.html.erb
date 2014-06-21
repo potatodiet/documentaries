@@ -1,6 +1,6 @@
 <h1><%= @user.username %></h1>
 <% if @user.id == session[:user_id] %>
-  <a href="<%= user_edit_url %>" class="btn btn-default">Edit Profile</a>
+  <%= link_to('Edit Profile', user_edit_url, class: 'small button') %>
 <% end %>
 <br>
 <br>
@@ -8,22 +8,18 @@
 <div>
   <h2>Uploaded Documentaries:</h2>
   <hr>
-  <% @documentaries.each_slice(4) do |grouped_documentaries| %>
-    <div class="row">
-      <% grouped_documentaries.each do |documentary| %>
-        <div class="col-md-3" id="<%= documentary.id %>">
-          <%= link_to(documentary_path(documentary)) do %>
-            <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
-            <h3><%= documentary.title %></h3>
-          <% end %>
-          <span><%= documentary.likes %> likes, and</span>
-          <span><%= documentary.dislikes %> dislikes</span>
-        </div>
-      <% end %>
-    </div>
-    <br>
-    <br>
-  <% end %>
+  <div class="row">
+    <% @documentaries.each do |documentary| %>
+      <div class="small-6 medium-3 columns end" id="<%= documentary.id %>">
+        <%= link_to(documentary_path(documentary)) do %>
+          <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
+          <h3><%= documentary.title %></h3>
+        <% end %>
+        <span><%= documentary.likes %> likes, and</span>
+        <span><%= documentary.dislikes %> dislikes</span>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<%= will_paginate(@documentaries, renderer: BootstrapPagination::Rails) %>
+<%= will_paginate(@documentaries, renderer: FoundationPagination::Rails) %>
