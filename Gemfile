@@ -18,6 +18,8 @@ gem 'foundation_rails_helper'
 gem 'will_paginate'
 gem 'will_paginate-foundation'
 
+gem 'acts-as-taggable-on'
+
 group :production do
   gem 'rails_12factor'
   gem 'newrelic_rpm'

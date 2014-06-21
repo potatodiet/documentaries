@@ -45,5 +45,5 @@ end
 private
   def documentary_params
     params.require(:documentary).permit(:title,
-        :description, :video_source, :video_service, :category)
+        :description, :video_source, :video_service, :tag_list)
   end

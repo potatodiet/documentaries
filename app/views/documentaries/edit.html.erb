@@ -1,51 +1,13 @@
-<%= form_for(@documentary, method: :patch, :html => { :role => 'form',
-    :class => 'form-horizontal' }) do |f| %>
-  <% if @documentary.errors.any? %>
-    <div class="error_messages">
-    <h2>Form is invalid</h2>
-    <ul>
-      <% for message in @documentary.errors.full_messages %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-    </div>
-  <% end %>
-  <div class="form-group">
-    <%= f.label :title, class: 'control-label col-sm-2' %>
-    <div class="col-sm-5">
-      <%= f.text_field :title, class: 'form-control',
-          placeholder: 'Test Title' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :description, class: 'control-label col-sm-2' %>
-    <div class="col-sm-5">
-      <%= f.text_area :description, class: 'form-control',
-          placeholder: 'Test Description' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :video_service, class: 'control-label col-sm-2' %>
-    <div class="col-sm-5">
-    <%= f.select :video_service, @documentary.select_list, {}, { class: 'form-control' } %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :video_source, class: 'control-label col-sm-2' %>
-    <div class="col-sm-5">
-      <%= f.text_field :video_source, class: 'form-control',
-          placeholder: 'M7lc1UVf-VE' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :category, class: 'control-label col-sm-2' %>
-    <div class="col-sm-5">
-    <%= f.select :category, @documentary.category_list, {}, { class: 'form-control' } %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Save Changes</button>
-    </div>
-  </div>
+<%= form_for(@documentary, method: :patch) do |f| %>
+  <%= f.text_field(:title, placeholder: 'Test Title') %>
+
+  <%= f.text_area(:description, placeholder: 'Test Description') %>
+
+  <%= f.text_field(:tag_list, placeholder: 'Tag One, Tag Two') %>
+
+  <%= f.select(:video_service, @documentary.select_list) %>
+
+  <%= f.text_field(:video_source, placeholder: 'M7lc1UVf-VE') %>
+
+  <%= f.submit('Save Changes') %>
 <% end %>

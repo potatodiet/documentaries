@@ -1,11 +1,11 @@
 class Documentary < ActiveRecord::Base
-  attr_reader(:select_list, :category_list)
+  attr_reader(:select_list)
 
   validates_presence_of(:title)
   validates_presence_of(:description)
   validates_presence_of(:video_source)
   validates_presence_of(:video_service)
-  validates_presence_of(:category)
+  validates_presence_of(:tag_list)
 
   validates_uniqueness_of(:title)
   validates_uniqueness_of(:video_source)
@@ -13,19 +13,19 @@ class Documentary < ActiveRecord::Base
   after_initialize(:create_arrays)
   before_save(:defaults)
 
+  acts_as_taggable_on(:tags)
+
   # will_paginate setting
   self.per_page = 8
 
   def create_arrays
     @select_list = ['youtube']
-    @category_list = ['Other', 'Rome', 'World War 2', 'World War 1']
   end
 
   def defaults
     self.likes ||= 0
     self.dislikes ||= 0
     self.total_rating ||= 0;
-    self.thumbnail_url ||= "https://img.youtube.com/vi/" \
-        "#{video_source}/mqdefault.jpg"
+    self.thumbnail_url ||= "https://img.youtube.com/vi/#{video_source}/mqdefault.jpg"
   end
 end
