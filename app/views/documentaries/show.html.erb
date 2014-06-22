@@ -2,9 +2,11 @@
   <h1><%= @documentary.title %></h1>
   <p><%= @documentary.description %></p>
   <% if @documentary.video_service == 'youtube' %>
-    <iframe id="ytplayer" type="text/html" width="640" height="360"
-        src="//www.youtube.com/embed/<%= @documentary.video_source %>"
-        frameborder="0" allowfullscreen></iframe>
+    <div class="video-wrapper" id="video-player">
+      <iframe id="ytplayer" type="text/html"
+          src="//www.youtube.com/embed/<%= @documentary.video_source %>"
+          frameborder="0" allowfullscreen></iframe>
+    </div>
   <% end %>
   <h3>Uploaded by <a href="/user/view/<%= @documentary.uploader_user.to_s %>">
       <%= @documentary_user %></a></h3>
