@@ -54,9 +54,11 @@
   </div>
 
   <div class="row">
-    <%= display_flash_messages %>
+    <div class="columns">
+      <%= display_flash_messages %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </div>
 
   <%= javascript_include_tag('vendor/modernizr') %>
