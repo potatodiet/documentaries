@@ -1,4 +1,7 @@
 <%= form_for(@documentary, method: :patch) do |f| %>
+  <%= link_to('Destroy', documentary_path(@documentary), method: :delete, 
+      class: 'small button alert') if can?(:destroy, @documentary) %>
+
   <%= f.text_field(:title, placeholder: 'Test Title') %>
 
   <%= f.text_area(:description, placeholder: 'Test Description') %>

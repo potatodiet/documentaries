@@ -25,7 +25,7 @@ class DocumentariesController < ApplicationController
       redirect_to root_url :notice => 'Documentary created!'
     else
       flash.now.alert = 'Error'
-      render :new
+      render(:new)
     end
   end
 
@@ -39,7 +39,17 @@ class DocumentariesController < ApplicationController
     if @documentary.update(documentary_params)
       redirect_to(documentary_path(@documentary))
     else
-      render('edit')
+      render(:edit)
+    end
+  end
+
+  def destroy
+    @documentary = Documentary.find(params[:id])
+
+    if @documentary.destroy
+      redirect_to(root_url, notice: 'Destroyed Documentary')
+    else
+      render(:edit)
     end
   end
 end
