@@ -1,6 +1,5 @@
 <div>
-  <h2>Best:</h2>
-  <hr>
+  <h2 class="title-divider">Best:</h2>
   <div class="row">
     <% @best_documentaries.each do |documentary| %>
       <div class="small-6 medium-3 columns end" id="<%= documentary.id %>">
@@ -14,9 +13,9 @@
     <% end %>
   </div>
 </div>
+
 <div>
-  <h2>Random:</h2>
-  <hr>
+  <h2 class="title-divider">Random:</h2>
   <div class="row">
     <% @random_documentaries.each do |documentary| %>
       <div class="small-6 medium-3 columns end" id="<%= documentary.id %>">
