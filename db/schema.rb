@@ -11,21 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621163011) do
+ActiveRecord::Schema.define(version: 20140622225309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "documentaries", force: true do |t|
-    t.string  "title"
-    t.text    "description"
-    t.string  "video_source"
-    t.integer "uploader_user"
-    t.integer "likes"
-    t.integer "dislikes"
-    t.string  "thumbnail_url"
-    t.integer "total_rating"
-    t.string  "video_service"
+    t.string   "title"
+    t.text     "description"
+    t.string   "video_source"
+    t.integer  "uploader_user"
+    t.integer  "likes"
+    t.integer  "dislikes"
+    t.string   "thumbnail_url"
+    t.integer  "total_rating"
+    t.string   "video_service"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reviews", force: true do |t|
