@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource(:class => false)
   
   def new
     @user = User.new
