@@ -4,7 +4,7 @@ Documentaries::Application.routes.draw do
   resources 'reviews', only: ['create']
   patch 'review' => 'reviews#update', as: 'review_update'
 
-  get 'user/view/:id' => 'users#show'
+  get 'user/view/:id' => 'users#show', as: 'show_user'
   get 'user/edit' => 'users#edit', as: 'user_edit'
   patch 'user/edit' => 'users#update'
 
