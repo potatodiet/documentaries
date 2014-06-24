@@ -12,10 +12,6 @@ class DocumentariesController < ApplicationController
   end
 
   def create
-    if !current_user
-      redirect_to root_url
-    end
-
     @documentary = Documentary.new(documentary_params)
     @documentary.uploader = @current_user
 
