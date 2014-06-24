@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @documentaries = Documentary.where(:uploader_user => params[:id]).paginate(:page => params[:page]).order('total_rating DESC')
+    @documentaries = @user.documentaries.order('created_at desc').paginate(:page => params[:page])
   end
 
   def edit

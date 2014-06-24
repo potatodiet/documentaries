@@ -8,8 +8,8 @@
           frameborder="0" allowfullscreen></iframe>
     </div>
   <% end %>
-  <h3>Uploaded by <a href="/user/view/<%= @documentary.uploader_user.to_s %>">
-      <%= @documentary_user %></a></h3>
+
+  <h3>Uploaded By: <%= link_to(@documentary.uploader.username, show_user_path(@documentary.uploader)) %></h3>
   <span><%= @documentary.likes %> likes, and</span>
   <span><%= @documentary.dislikes %> dislikes</span>
 
@@ -18,9 +18,8 @@
   <%= link_to('Edit Documentary', edit_documentary_path(@documentary), class: 'small button') if can?(:edit, @documentary) %>
 </div>
 
-<% if !@review.message %>
+<% if @review.new_record? %>
   <%= form_for(@review, url: reviews_path) do |f| %>
-    <input type="hidden" name="review[documentary_id]" value="<%= @documentary.id %>" />
     <%= f.hidden_field('documentary_id', value: @documentary.id) %>
 
     <%= f.text_area(:message, label: 'Review', placeholder: 'Test Message') %>
@@ -45,21 +44,16 @@
   <%= form_for(@review, url: review_update_path, method: :patch) do |f| %>
     <%= f.hidden_field('documentary_id', value: @documentary.id) %>
 
-    <%= f.text_area :message, label: 'Review', placeholder: 'Test Message', value: @review.message %>
+    <%= f.text_area(:message, label: 'Review', placeholder: 'Test Message', value: @review.message) %>
 
-    <div class="form-group">
-    <div class="radio col-sm-offset-2">
-      <label>
-        <input type="radio" name="review[is_positive]" value="true" <%= @review.is_positive == true ? 'checked' : nil %>>
-        Liked
-      </label>
-    </div>
-    <div class="radio col-sm-offset-2">
-      <label>
-        <input type="radio" name="review[is_positive]" value="false" <%= @review.is_positive == false ? 'checked' : nil %>>
-        Disliked
-      </label>
-    </div>
+    <label>
+      <input type="radio" name="review[is_positive]" value="true" <%= 'checked' if @review.is_positive %>>
+      Liked
+    </label>
+    <label>
+      <input type="radio" name="review[is_positive]" value="false" <%= 'checked' unless @review.is_positive %>>
+      Disliked
+    </label>
 
     <%= f.submit('Update Review') %>
   <% end %>
@@ -69,6 +63,6 @@
   <hr>
   <p><%= review.message %></p>
   <p><%= review.is_positive ? 'Liked' : 'Disliked' %></p>
-  <p>Posted by <a href="/user/view/<%= review.user_id %>">
-      <%= User.find(review.user_id).username %></a></p>
+  <p>Posted by <a href="/user/view/<%= review.reviewer %>">
+      <%= review.reviewer.username %></a></p>
 <% end %>

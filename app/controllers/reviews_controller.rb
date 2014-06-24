@@ -2,46 +2,46 @@ class ReviewsController < ApplicationController
   load_and_authorize_resource
 
   def create
-    review = Review.new(params.require(:review).permit(:message, :is_positive,
-        :documentary_id))
-    review.user_id = session[:user_id]
-    review.save
+    review = Review.new(review_params)
+    review.reviewer = current_user
 
-    documentary = Documentary.find(params[:review][:documentary_id])
     if params[:review][:is_positive] == 'true'
-      documentary.likes += 1
-      documentary.total_rating += 1
+      review.documentary.likes += 1
+      review.documentary.total_rating += 1
     else
-      documentary.dislikes += 1
-      documentary.total_rating -= 1
+      review.documentary.dislikes += 1
+      review.documentary.total_rating -= 1
     end
-    documentary.save
 
-    redirect_to :back
+    review.save
+    review.documentary.save
+
+    redirect_to(:back)
   end
 
   def update
-    review = Review.where('user_id' => session[:user_id],
-        'documentary_id' => params[:review][:documentary_id]).first
+    review = Review.where(documentary_id: params[:review][:documentary_id], reviewer_id: current_user.id).first
 
-    documentary = Documentary.find(params[:review][:documentary_id])
     if params[:review][:is_positive] != review.is_positive.to_s
       if params[:review][:is_positive] == 'true'
-        documentary.likes += 1
-        documentary.dislikes -= 1
-        documentary.total_rating += 2
+        review.documentary.likes += 1
+        review.documentary.dislikes -= 1
+        review.documentary.total_rating += 2
       else
-        documentary.likes -= 1
-        documentary.dislikes += 1
-        documentary.total_rating -= 2
+        review.documentary.likes -= 1
+        review.documentary.dislikes += 1
+        review.documentary.total_rating -= 2
       end
     end
-    documentary.save
 
-    review.message = params[:review][:message]
-    review.is_positive = params[:review][:is_positive]
-    review.save
+    review.update(review_params)
+    review.documentary.save
 
-    redirect_to :back
+    redirect_to(:back)
+  end
+
+private
+  def review_params
+    params.require(:review).permit(:message, :is_positive, :documentary_id)
   end
 end

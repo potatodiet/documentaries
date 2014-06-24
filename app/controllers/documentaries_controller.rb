@@ -3,10 +3,8 @@ class DocumentariesController < ApplicationController
   
   def show
     @documentary = Documentary.find(params[:id])
-    @documentary_user = User.find(@documentary.uploader_user).username
-    @review = Review.where({user_id: session[:user_id],
-    documentary_id: @documentary.id}).first || Review.new
-    @reviews = Review.where('documentary_id' => @documentary.id)
+    @review = @documentary.reviews.where(reviewer: current_user.id).first || Review.new
+    @reviews = @documentary.reviews.order('updated_at asc')
   end
 
   def new
@@ -19,7 +17,7 @@ class DocumentariesController < ApplicationController
     end
 
     @documentary = Documentary.new(documentary_params)
-    @documentary.uploader_user = session[:user_id]
+    @documentary.uploader = @current_user
 
     if @documentary.save
       redirect_to root_url :notice => 'Documentary created!'

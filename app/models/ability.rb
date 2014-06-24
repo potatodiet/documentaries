@@ -9,8 +9,8 @@ class Ability
     else
       can(:create, [Documentary, Review])
 
-      can([:destroy, :update], Documentary, :uploader_user => user.id)
-      can([:destroy, :update], Review, :user_id => user.id)
+      can([:destroy, :update], Documentary, :uploader => user)
+      can([:destroy, :update], Review, :reviewer => user)
       can(:update, User, :id => user.id)
       can(:destroy, :session)
     end
