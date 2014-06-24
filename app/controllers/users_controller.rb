@@ -10,16 +10,16 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url :notice => 'Signed up!'
+      redirect_to(root_path notice: 'Signed up!')
     else
       flash.now.alert = 'Error'
-      render :new
+      render(:new)
     end
   end
 
   def show
     @user = User.find(params[:id])
-    @documentaries = @user.documentaries.order('created_at desc').paginate(:page => params[:page])
+    @documentaries = @user.documentaries.order('created_at desc').paginate(page: params[:page])
   end
 
   def edit
@@ -30,9 +30,9 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
 
     if @user.update(user_params)
-      redirect_to root_url
+      redirect_to(root_path)
     else
-      render 'edit'
+      render(:edit)
     end
   end
 end

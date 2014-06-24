@@ -16,7 +16,7 @@ class DocumentariesController < ApplicationController
     @documentary.uploader = @current_user
 
     if @documentary.save
-      redirect_to root_url :notice => 'Documentary created!'
+      redirect_to(root_path, notice: 'Documentary created')
     else
       flash.now.alert = 'Error'
       render(:new)
@@ -41,7 +41,7 @@ class DocumentariesController < ApplicationController
     @documentary = Documentary.find(params[:id])
 
     if @documentary.destroy
-      redirect_to(root_url, notice: 'Destroyed Documentary')
+      redirect_to(root_path, notice: 'Destroyed Documentary')
     else
       render(:edit)
     end
@@ -50,6 +50,7 @@ end
 
 private
   def documentary_params
-    params.require(:documentary).permit(:title,
-        :description, :video_source, :video_service, :tag_list)
+    params.require(:documentary).permit(
+      :title, :description, :video_source, :video_service, :tag_list
+    )
   end

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if @user
       session[:user_id] = @user.id
 
-      redirect_to root_url, :notice => 'Signed in'
+      redirect_to(root_path, notice: 'Signed in')
     else
       @user = User.new
       flash.now.alert = 'Invalid email or password'
@@ -22,6 +22,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
 
-    redirect_to root_url, :notice => 'Signed out'
+    redirect_to(root_path, notice: 'Signed out')
   end
 end
