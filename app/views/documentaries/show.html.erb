@@ -1,6 +1,7 @@
 <div>
   <h1><%= @documentary.title %></h1>
   <p><%= @documentary.description %></p>
+
   <% if @documentary.video_service == 'youtube' %>
     <div class="video-wrapper" id="video-player">
       <iframe id="ytplayer" type="text/html"
@@ -9,7 +10,8 @@
     </div>
   <% end %>
 
-  <h3>Uploaded By: <%= link_to(@documentary.uploader.username, show_user_path(@documentary.uploader)) %></h3>
+  <h3>Uploaded by <%= link_to(@documentary.uploader.username, show_user_path(@documentary.uploader)) %></h3>
+
   <span><%= @documentary.likes %> likes, and</span>
   <span><%= @documentary.dislikes %> dislikes</span>
 
@@ -61,8 +63,9 @@
 
 <% @reviews.each do |review| %>
   <hr>
+
   <p><%= review.message %></p>
   <p><%= review.is_positive ? 'Liked' : 'Disliked' %></p>
-  <p>Posted by <a href="/user/view/<%= review.reviewer %>">
-      <%= review.reviewer.username %></a></p>
+
+  <p>Posted by <%= link_to(review.reviewer.username, show_user_path(review.reviewer)) %></p>
 <% end %>
