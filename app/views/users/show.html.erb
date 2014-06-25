@@ -9,7 +9,7 @@
   <div class="row">
     <% @documentaries.each do |documentary| %>
       <div class="small-6 medium-3 columns end documentary-container" id="<%= documentary.id %>">
-        <%= link_to(documentary_path(documentary)) do %>
+        <%= link_to(documentary_path(documentary), title: documentary.title) do %>
           <img src="<%= documentary.thumbnail_url %>" width="225" height="127">
           <h3><%= documentary.title %></h3>
         <% end %>

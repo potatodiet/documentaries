@@ -12,4 +12,11 @@
 
 .documentary-container h3 {
   font-size: 1.5em;
+
+  // Limit title length
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
