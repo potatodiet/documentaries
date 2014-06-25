@@ -14,7 +14,9 @@ class Documentary < ActiveRecord::Base
   validates_uniqueness_of(:video_source)
 
   after_initialize(:create_arrays)
+
   before_save(:defaults)
+  before_save(:create_thumbnail)
 
   acts_as_taggable_on(:tags)
 
@@ -29,6 +31,9 @@ class Documentary < ActiveRecord::Base
     self.likes ||= 0
     self.dislikes ||= 0
     self.total_rating ||= 0;
-    self.thumbnail_url ||= "https://img.youtube.com/vi/#{video_source}/mqdefault.jpg"
+  end
+
+  def create_thumbnail
+    self.thumbnail_url = "https://img.youtube.com/vi/#{video_source}/mqdefault.jpg"
   end
 end
