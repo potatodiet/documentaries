@@ -16,7 +16,7 @@ class DocumentariesController < ApplicationController
     @documentary.uploader = @current_user
 
     if @documentary.save
-      redirect_to(root_path, notice: 'Documentary created')
+      redirect_to(documentary_path(@documentary), notice: 'Documentary created')
     else
       flash.now.alert = 'Error'
       render(:new)
