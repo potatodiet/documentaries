@@ -3,7 +3,7 @@ class DocumentariesController < ApplicationController
   
   def show
     @documentary = Documentary.find(params[:id])
-    @review = @documentary.reviews.where(reviewer: current_user.id).first || Review.new
+    @review = @documentary.reviews.where(reviewer: current_user).first || Review.new
     @reviews = @documentary.reviews.order('updated_at asc')
   end
 
