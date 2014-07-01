@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623182630) do
+ActiveRecord::Schema.define(version: 20140701024242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20140623182630) do
     t.integer  "uploader_id"
   end
 
+  add_index "documentaries", ["uploader_id"], name: "index_documentaries_on_uploader_id", using: :btree
+
   create_table "reviews", force: true do |t|
     t.text     "message"
     t.boolean  "is_positive"
@@ -38,6 +40,9 @@ ActiveRecord::Schema.define(version: 20140623182630) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "reviews", ["documentary_id"], name: "index_reviews_on_documentary_id", using: :btree
+  add_index "reviews", ["reviewer_id"], name: "index_reviews_on_reviewer_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
