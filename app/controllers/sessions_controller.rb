@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     else
       @user = User.new
       flash.now.alert = 'Invalid email or password'
-      render :new
+      render(:new)
     end
   end
 
