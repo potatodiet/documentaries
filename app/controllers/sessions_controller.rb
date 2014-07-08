@@ -6,14 +6,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.authenticate(params[:user][:email_address], params[:user][:password])
+    @user = User.authenticate(params[:user][:username], params[:user][:username])
+
     if @user
       session[:user_id] = @user.id
 
       redirect_to(root_path, notice: 'Signed in')
     else
-      @user = User.new
-      flash.now.alert = 'Invalid email or password'
+      @user = User.new(username: params[:user][:username])
+      flash.now.alert = 'Invalid username or password'
       render(:new)
     end
   end

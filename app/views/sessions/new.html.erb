@@ -1,6 +1,6 @@
 <%= form_for(@user, :url => sign_in_path) do |f| %>
   <div class="large-6 medium-6 columns">
-    <%= f.email_field(:email_address, placeholder: 'Email Address') %>
+    <%= f.text_field(:username, placeholder: 'Username') %>
   </div>
 
   <div class="large-6 medium-6 columns">

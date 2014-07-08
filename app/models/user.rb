@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   has_many(:documentaries, foreign_key: 'uploader_id')
   has_many(:reviews, foreign_key: 'reviewer_id')
 
-  def self.authenticate(email_address, password)
-    user = User.where(email_address: email_address).first
+  def self.authenticate(username, password)
+    user = User.where(username: username).first
     if user && user.password_hash == BCrypt::Engine.hash_secret(
       password, user.password_salt
     )
