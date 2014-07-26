@@ -13,7 +13,7 @@ class DocumentariesController < ApplicationController
 
   def create
     @documentary = Documentary.new(documentary_params)
-    @documentary.uploader = @current_user
+    @documentary.uploader = current_user
 
     if @documentary.save
       redirect_to(documentary_path(@documentary), notice: 'Documentary created')

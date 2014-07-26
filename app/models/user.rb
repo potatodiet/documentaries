@@ -1,35 +1,25 @@
-require 'bcrypt'
-
 class User < ActiveRecord::Base
-  attr_accessor(:password)
+  devise(
+    :database_authenticatable, :registerable,
+    :recoverable, :rememberable, :trackable, :validatable
+  )
 
-  before_save(:encrypt_password)
+  attr_accessor(:login)
 
-  validates_presence_of(:username)
-  validates_uniqueness_of(:username)
-  validates_presence_of(:email_address)
-  validates_uniqueness_of(:email_address)
-  validates_presence_of(:password, on: :create)
+  validates_presence_of(:name)
+  validates_uniqueness_of(:name)
+  validates_presence_of(:email)
+  validates_uniqueness_of(:email)
 
   has_many(:documentaries, foreign_key: 'uploader_id')
   has_many(:reviews, foreign_key: 'reviewer_id')
 
-  def self.authenticate(username, password)
-    user = User.where(username: username).first
-    if user && user.password_hash == BCrypt::Engine.hash_secret(
-      password, user.password_salt
-    )
-
-      user
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(['name = :value OR email = :value', { :value => login }]).first
     else
-      nil
-    end
-  end
-
-  def encrypt_password
-    if password.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+      where(conditions).first
     end
   end
 end
