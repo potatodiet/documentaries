@@ -86,7 +86,7 @@ Documentaries::Application.configure do
     :enable_starttls_auto => true,
     :user_name            => ENV['MANDRILL_USERNAME'],
     :password             => ENV['MANDRILL_PASSWORD'],
-    :authentication       => 'login',
+    :authentication       => 'plain',
     :domain               => 'documentaries.pyrohail.com'
   }
 
