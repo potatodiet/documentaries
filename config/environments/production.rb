@@ -81,18 +81,18 @@ Documentaries::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.smtp_settings = {
-    :address              => 'smtp.mandrillapp.com',
+    :address              => 'smtp.mailgun.org',
     :port                 => 587,
-    :enable_starttls_auto => false,
-    :user_name            => ENV['MANDRILL_USERNAME'],
-    :password             => ENV['MANDRILL_PASSWORD'],
+    :enable_starttls_auto => true,
+    :user_name            => ENV['MAILGUN_USERNAME'],
+    :password             => ENV['MAILGUN_PASSWORD'],
     :authentication       => 'plain',
-    :domain               => 'documentaries.pyrohail.com'
+    :domain               => 'pyrohail.com'
   }
 
   config.action_mailer.default_url_options = { :host => 'documentaries.pyrohail.com' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default :charset => 'utf-8'
 end
