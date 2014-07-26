@@ -89,4 +89,6 @@ Documentaries::Application.configure do
     :authentication       => 'login',
     :domain               => 'documentaries.pyrohail.com'
   }
+
+  config.action_mailer.default_url_options = { :host => 'documentaries.pyrohail.com' }
 end
