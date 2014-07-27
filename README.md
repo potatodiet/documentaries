@@ -5,7 +5,7 @@ Video sharing website with a focus on documentaries.
 Production Requirements
 ----------
 * PostgreSQL
-* Ruby (1.9.3)
+* Ruby (2.1.2)
 * Node.js (Linux only)
 
 Development Requirements
