@@ -4,3 +4,4 @@
 /tmp
 
 /vagrant/.vagrant
+/vagrant/Vagrantfile
