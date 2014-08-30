@@ -11,12 +11,19 @@ Production Requirements
 Development Requirements
 ----------
 * Vagrant
-* VirtualBox
+* VirtualBox (Windows, Mac)
+* LXC (Linux)
 
 Development Setup
 ----------
 ```
 cd vagrant/
+
+# Windows or Mac
+cp Vagrantfile.virtual_box Vagrantfile
+# Linux
+cp Vagrantfile.lxc Vagrantfile
+
 vagrant up
 vagrant ssh
 
