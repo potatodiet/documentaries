@@ -7,7 +7,7 @@ class Ability
     unless user
       can(:create, [User, :session])
     else
-      if user.role == "regular"
+      if user.role?("regular")
         can(:create, [Documentary, Review])
 
         can([:destroy, :update], Documentary, :uploader => user)
@@ -16,8 +16,9 @@ class Ability
         can(:destroy, :session)
       end
 
-      if user.role == "admin"
+      if user.role?("admin")
         can(:manage, :all)
+        can(:assign_roles)
       end
     end
   end

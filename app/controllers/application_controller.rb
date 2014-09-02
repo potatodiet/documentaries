@@ -9,6 +9,10 @@ protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :password, :remember_me) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password) }
+    devise_parameter_sanitizer.for(:account_update) { |u|
+      params = [:name, :email, :password, :current_password]
+      params << :role if can?(:assign_roles, current_user)
+      u.permit(params)
+    }
   end
 end

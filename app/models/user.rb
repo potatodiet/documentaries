@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
   def default_values
     self.role ||= "regular"
   end
+
+  def role?(base_role)
+    ROLES.index(base_role.to_s) <= ROLES.index(role)
+  end
 end
