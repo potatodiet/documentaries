@@ -7,12 +7,18 @@ class Ability
     unless user
       can(:create, [User, :session])
     else
-      can(:create, [Documentary, Review])
+      if user.role == "regular"
+        can(:create, [Documentary, Review])
 
-      can([:destroy, :update], Documentary, :uploader => user)
-      can([:destroy, :update], Review, :reviewer => user)
-      can(:update, User, :id => user.id)
-      can(:destroy, :session)
+        can([:destroy, :update], Documentary, :uploader => user)
+        can([:destroy, :update], Review, :reviewer => user)
+        can(:update, User, :id => user.id)
+        can(:destroy, :session)
+      end
+
+      if user.role == "admin"
+        can(:manage, :all)
+      end
     end
   end
 end
