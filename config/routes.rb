@@ -8,5 +8,5 @@ Documentaries::Application.routes.draw do
 
   resources('search', :only => [:index])
   resources('documentaries')
-  resources('users', :only => [:show])
+  resources('users', :only => [:show, :edit, :update])
 end
