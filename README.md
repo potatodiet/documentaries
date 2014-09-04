@@ -4,7 +4,7 @@ Video sharing website with a focus on documentaries.
 
 Production Requirements
 ----------
-* PostgreSQL
+* PostgreSQL (MySQL or SQLite should also work)
 * Ruby (2.1.2)
 * Node.js (Linux only)
 
@@ -17,6 +17,9 @@ Development Requirements
 Development Setup
 ----------
 ```
+# MySQL, and SQLite also available
+cp config/database.postgresql.yml config/database.yml
+
 cd vagrant/
 
 # Windows or Mac
@@ -28,6 +31,7 @@ vagrant up
 vagrant ssh
 
 cd /home/vagrant/code/documentaries/
+
 bundle install
 rbenv rehash
 rake db:create db:migrate
