@@ -13,3 +13,7 @@ test:
 
 production:
   <<: *default
+  database: documentaries
+  username: documentaries
+  password: example_password
+  

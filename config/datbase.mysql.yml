@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: dev_db
+
+test:
+  <<: *default
+  database: test_db
+
+production:
+  <<: *default
+  database: documentaries
+  username: documentaries
+  password: example_password
+  

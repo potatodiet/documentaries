@@ -6,3 +6,5 @@
 /vagrant/.vagrant
 /vagrant/Vagrantfile
 /vagrant/tmp/
+
+/config/database.yml
