@@ -30,10 +30,12 @@ cp Vagrantfile.lxc Vagrantfile
 vagrant up
 vagrant ssh
 
-cd /home/vagrant/code/documentaries/
+cd code/documentaries/
 
 bundle install
 rbenv rehash
-rake db:create db:migrate
+
+rake db:setup
+
 rails server
 ```
