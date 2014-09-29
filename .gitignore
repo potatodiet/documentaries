@@ -5,6 +5,7 @@
 
 /vagrant/.vagrant
 /vagrant/Vagrantfile
+/vagrant/cookbooks/
 /vagrant/tmp/
 
 /config/database.yml
