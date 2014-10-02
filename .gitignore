@@ -6,6 +6,7 @@
 /vagrant/.vagrant
 /vagrant/Vagrantfile
 /vagrant/cookbooks/
+/vagrant/Cheffile.lock
 /vagrant/tmp/
 
 /config/database.yml
