@@ -1,0 +1,17 @@
+%div
+  %h2 Documentaries:
+  %hr/
+  - @documentaries.each do |documentary|
+    .small-6.medium-3.columns.end{"data-id" => documentary.id}
+      = link_to(documentary_path(documentary)) do
+        %img{:height => "127", :src => documentary.thumbnail_url, :width => "225"}/
+        %h3= documentary.title
+      %span
+        = documentary.likes
+        likes, and
+      %span
+        = documentary.dislikes
+        dislikes
+%div
+  .large-12.columns
+    = will_paginate(@documentaries, renderer: FoundationPagination::Rails)

@@ -1,0 +1,18 @@
+#user-info
+  %h1= @user.name
+  = link_to('Edit Profile', edit_user_path, class: 'small button') if can?(:edit, @user)
+#user-documentaries
+  %h2.title-divider Uploaded Documentaries
+  .row
+    - @documentaries.each do |documentary|
+      .small-6.medium-3.columns.end.documentary-container{"data-id" => documentary.id}
+        = link_to(documentary_path(documentary), title: documentary.title) do
+          %img{:height => "127", :src => documentary.thumbnail_url, :width => "225"}/
+          %h3= documentary.title
+        %span
+          = documentary.likes
+          likes, and
+        %span
+          = documentary.dislikes
+          dislikes
+= will_paginate(@documentaries, renderer: FoundationPagination::Rails)

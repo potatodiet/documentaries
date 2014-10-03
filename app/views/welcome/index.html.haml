@@ -1,0 +1,28 @@
+.best-documentaries
+  %h2.title-divider Best:
+  .row
+    - @best_documentaries.each do |documentary|
+      .small-6.medium-3.columns.end.documentary-container{"data-id" => documentary.id}
+        = link_to(documentary_path(documentary), title: documentary.title) do
+          %img{:height => "127", :src => documentary.thumbnail_url, :width => "225"}/
+          %h3= documentary.title
+        %span
+          = documentary.likes
+          likes, and
+        %span
+          = documentary.dislikes
+          dislikes
+.random-documentaries
+  %h2.title-divider Random:
+  .row
+    - @random_documentaries.each do |documentary|
+      .small-6.medium-3.columns.end.documentary-container{"data-id" => documentary.id}
+        = link_to(documentary_path(documentary), title: documentary.title) do
+          %img{:height => "127", :src => documentary.thumbnail_url, :width => "225"}/
+          %h3= documentary.title
+        %span
+          = documentary.likes
+          likes, and
+        %span
+          = documentary.dislikes
+          dislikes

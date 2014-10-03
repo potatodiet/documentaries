@@ -1,0 +1,6 @@
+= form_for(@user, url: user_path, method: :patch) do |f|
+  = f.text_field(:name, label: 'Username', placeholder: 'Username')
+  = f.email_field(:email, label: 'Email Address', placeholder: 'Email Address')
+  = f.password_field(:password, placeholder: 'Password')
+  = f.collection_select(:role, User::ROLES, :to_s, :humanize) if can?(:assign_roles, current_user)
+  = f.submit('Save Changes')

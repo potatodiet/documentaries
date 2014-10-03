@@ -1,0 +1,7 @@
+= form_for(@documentary) do |f|
+  = f.text_field(:title, placeholder: 'Test Title')
+  = f.text_area(:description, placeholder: 'Test Description')
+  = f.text_field(:tag_list, placeholder: 'Tag One, Tag Two')
+  = f.select(:video_service, @documentary.select_list)
+  = f.text_field(:video_source, placeholder: 'M7lc1UVf-VE')
+  = f.submit('Upload!')
