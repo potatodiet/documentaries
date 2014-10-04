@@ -1,6 +1,6 @@
 #user-info
   %h1= @user.name
-  = link_to('Edit Profile', edit_user_path, class: 'small button') if can?(:edit, @user)
+  = link_to("Edit Profile", edit_user_path, class: "small button") if can?(:edit, @user)
 #user-documentaries
   %h2.title-divider Uploaded Documentaries
   .row

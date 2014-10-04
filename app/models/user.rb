@@ -15,13 +15,13 @@ class User < ActiveRecord::Base
 
   before_save(:default_values)
 
-  has_many(:documentaries, foreign_key: 'uploader_id')
-  has_many(:reviews, foreign_key: 'reviewer_id')
+  has_many(:documentaries, foreign_key: "uploader_id")
+  has_many(:reviews, foreign_key: "reviewer_id")
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(['name = :value OR email = :value', { :value => login }]).first
+      where(conditions).where(["name = :value OR email = :value", { :value => login }]).first
     else
       where(conditions).first
     end

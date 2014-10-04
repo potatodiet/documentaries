@@ -1,18 +1,17 @@
 !!!
 %html{:lang => "en"}
   %head
-    %meta{:charset => "utf-8"}/
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{charset: "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", name: "viewport"}/
     %title Documentaries
-    = stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track' => true)
+    = stylesheet_link_tag("application", media: "all", "data-turbolinks-track" => true)
     = csrf_meta_tags
-    %meta{:charset => "utf-8"}/
   %body
     .contain-to-grid
       %nav#navbar.top-bar{"data-topbar" => ""}
         %ul.title-area
           %li.name
-            %h1= link_to('Documentaries', root_path)
+            %h1= link_to("Documentaries", root_path)
           %li.toggle-topbar.menu-icon
             %a{:href => "#"}
               %span Menu
@@ -23,19 +22,19 @@
               %form{:action => search_index_path, :method => "get"}
                 .row.collapse
                   .large-8.small-9.columns
-                    = text_field_tag('search', params[:search], placeholder: 'Tag One, Tag Two')
+                    = text_field_tag("search", params[:search], placeholder: "Tag One, Tag Two")
                   .large-4.small-3.columns
-                    = submit_tag('Search', name: nil, class: 'alert button expand')
+                    = submit_tag("Search", name: nil, class: "alert button expand")
             - if user_signed_in?
-              %li= link_to('Upload', new_documentary_path)
-              %li= link_to('Profile', user_path(current_user))
-              %li= link_to('Sign Out', destroy_user_session_path, :method => :delete)
+              %li= link_to("Upload", new_documentary_path)
+              %li= link_to("Profile", user_path(current_user))
+              %li= link_to("Sign Out", destroy_user_session_path, :method => :delete)
             - else
-              %li= link_to('Sign Up', new_user_registration_path)
-              %li= link_to('Sign In', new_user_session_path)
+              %li= link_to("Sign Up", new_user_registration_path)
+              %li= link_to("Sign In", new_user_session_path)
     .row
       .columns
         = display_flash_messages
         = yield
-    = javascript_include_tag('vendor/modernizr')
-    = javascript_include_tag('application')
+    = javascript_include_tag("vendor/modernizr")
+    = javascript_include_tag("application")

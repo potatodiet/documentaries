@@ -1,7 +1,7 @@
 %div
   %h1= @documentary.title
   %p= @documentary.description
-  - if @documentary.video_service == 'youtube'
+  - if @documentary.video_service == "youtube"
     #video-player.video-wrapper
       %iframe#ytplayer{:allowfullscreen => "", :frameborder => "0", :src => "//www.youtube.com/embed/#{@documentary.video_source}", :type => "text/html"}
   %h3
@@ -13,12 +13,12 @@
     = @documentary.dislikes
     dislikes
   %p
-    Tags: #{raw @documentary.tag_list.map { |tag| link_to(tag, search_index_path(search: tag)) }.join(', ')}
-  = link_to('Edit Documentary', edit_documentary_path(@documentary), class: 'small button') if can?(:edit, @documentary)
+    Tags: #{raw @documentary.tag_list.map { |tag| link_to(tag, search_index_path(search: tag)) }.join(", ")}
+  = link_to("Edit Documentary", edit_documentary_path(@documentary), class: "small button") if can?(:edit, @documentary)
 - if @review.new_record?
   = form_for(@review, url: reviews_path) do |f|
-    = f.hidden_field('documentary_id', value: @documentary.id)
-    = f.text_area(:message, label: 'Review', placeholder: 'Test Message')
+    = f.hidden_field("documentary_id", value: @documentary.id)
+    = f.text_area(:message, label: "Review", placeholder: "Test Message")
     .form-group
       .radio.col-sm-offset-2
         %label
@@ -28,21 +28,21 @@
         %label
           %input{:name => "review[is_positive]", :type => "radio", :value => "false"}/
           Disliked
-      = f.submit('Submit Review')
+      = f.submit("Submit Review")
 - elsif current_user
   = form_for(@review, url: review_update_path, method: :patch) do |f|
-    = f.hidden_field('documentary_id', value: @documentary.id)
-    = f.text_area(:message, label: 'Review', placeholder: 'Test Message', value: @review.message)
+    = f.hidden_field("documentary_id", value: @documentary.id)
+    = f.text_area(:message, label: "Review", placeholder: "Test Message", value: @review.message)
     %label
-      <input type="radio" name="review[is_positive]" value="true" #{'checked' if @review.is_positive}>
+      <input type="radio" name="review[is_positive]" value="true" #{"checked" if @review.is_positive}>
       Liked
     %label
-      <input type="radio" name="review[is_positive]" value="false" #{'checked' unless @review.is_positive}>
+      <input type="radio" name="review[is_positive]" value="false" #{"checked" unless @review.is_positive}>
       Disliked
-    = f.submit('Update Review')
+    = f.submit("Update Review")
 - @reviews.each do |review|
   %hr/
   %p= review.message
-  %p= review.is_positive ? 'Liked' : 'Disliked'
+  %p= review.is_positive ? "Liked" : "Disliked"
   %p
     Posted by #{link_to(review.reviewer.name, user_path(review.reviewer))}

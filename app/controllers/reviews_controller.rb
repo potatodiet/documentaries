@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     review = Review.new(review_params)
     review.reviewer = current_user
 
-    if params[:review][:is_positive] == 'true'
+    if params[:review][:is_positive] == "true"
       review.documentary.likes += 1
       review.documentary.total_rating += 1
     else
@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
     review = Review.where(documentary_id: params[:review][:documentary_id], reviewer_id: current_user.id).first
 
     if params[:review][:is_positive] != review.is_positive.to_s
-      if params[:review][:is_positive] == 'true'
+      if params[:review][:is_positive] == "true"
         review.documentary.likes += 1
         review.documentary.dislikes -= 1
         review.documentary.total_rating += 2

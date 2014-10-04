@@ -1,8 +1,8 @@
 class Documentary < ActiveRecord::Base
   attr_reader(:select_list)
 
-  belongs_to(:uploader, :class_name => 'User')
-  has_many(:reviews, :foreign_key => 'documentary_id')
+  belongs_to(:uploader, :class_name => "User")
+  has_many(:reviews, :foreign_key => "documentary_id")
 
   validates_presence_of(:title)
   validates_presence_of(:description)
@@ -24,7 +24,7 @@ class Documentary < ActiveRecord::Base
   self.per_page = 8
 
   def create_arrays
-    @select_list = ['youtube']
+    @select_list = ["youtube"]
   end
 
   def defaults
