@@ -10,9 +10,9 @@ class Ability
       if user.role?("regular")
         can(:create, [Documentary, Review])
 
-        can([:destroy, :update], Documentary, :uploader => user)
-        can([:destroy, :update], Review, :reviewer => user)
-        can(:update, User, :id => user.id)
+        can([:destroy, :update], Documentary, uploader: user)
+        can([:destroy, :update], Review, reviewer: user)
+        can(:update, User, id: user.id)
         can(:destroy, :session)
       end
 

@@ -30,7 +30,7 @@
           Disliked
       = f.submit("Submit Review")
 - elsif current_user
-  = form_for(@review, url: review_update_path, method: :patch) do |f|
+  = form_for(@review, url: review_path(@review), method: :patch) do |f|
     = f.hidden_field("documentary_id", value: @documentary.id)
     = f.text_area(:message, label: "Review", placeholder: "Test Message", value: @review.message)
     %label
