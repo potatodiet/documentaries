@@ -1,8 +1,16 @@
 source "https://rubygems.org"
 
 gem "rails", "4.1.1"
-gem "thin", "~> 1.6.2"
-gem "pg"
+
+platform :mri do
+    gem "pg"
+    gem "thin", "~> 1.6.2"
+end
+
+platform :jruby do
+    gem "activerecord-jdbcpostgresql-adapter"
+    gem "puma"
+end
 
 # Assets
 gem "sass-rails", "~> 4.0.3"
