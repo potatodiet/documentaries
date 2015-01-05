@@ -1,7 +1,5 @@
 source "https://rubygems.org"
 
-ruby "2.1.2"
-
 gem "rails", "4.1.1"
 gem "thin", "~> 1.6.2"
 gem "pg"
@@ -14,7 +12,7 @@ gem "jquery-rails"
 gem "turbolinks"
 gem "haml-rails"
 
-gem "foundation-rails"
+gem "foundation-rails", "5.4.5"
 gem "foundation_rails_helper"
 gem "will_paginate"
 gem "will_paginate-foundation"
