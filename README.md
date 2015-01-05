@@ -24,8 +24,15 @@ cd vagrant/
 
 # Windows or Mac
 cp Vagrantfile.virtual_box Vagrantfile
+
 # Linux
 cp Vagrantfile.lxc Vagrantfile
+# For curl SSL certificate verification issue
+vagrant box add fgrehm/trusty64-lxc --insecure
+
+gem install librarian-chef
+# If using rbenv run "rbenv rehash"
+librarian-chef install
 
 vagrant up
 vagrant ssh
